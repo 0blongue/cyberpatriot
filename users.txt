@@ -1,0 +1,5 @@
+#Format: [A/S/D/P] Username
+#A: Make user Administrator
+#S: Make user Standard User
+#D: Delete user
+#P: Change user's password
