@@ -2,11 +2,22 @@
 # A script to perform all of the basic tasks
 
 # Back up important files
-mkdir ~/Backups
+mkdir -p ~/Backups/log
 cp /etc/group ~/Backups
 cp /etc/passwd ~/Backups
+cp /etc/shadow ~/Backups
+cp -r /var/log/* ~/Backups/log
+cp -r /etc/ssh ~/Backups/ssh
 #cp **Path to cyberpatriot directory** ~/Backups
 crontab -l > ~/Backups/crontab-backup
+
+
+# Correct Permissions
+chmod -R 444 /var/log
+chmod 440 /etc/passwd
+chmod 440 /etc/shadow
+chmod 440 /etc/group
+chmod -R 444 /etc/ssh
 
 
 # Perform updates
