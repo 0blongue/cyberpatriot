@@ -1,9 +1,10 @@
-#Format: [A/S/D/P] Username
-#A: Make user Administrator
-#S: Make user Standard User
-#D: Delete user
-#P: Change user's password
-[A user
-[S user
-[D user1
-[P user password
+#Format: [A/S/D/P Username {Password}
+#[A: Make user Administrator
+#[S: Make user Standard User
+#[D: Delete user
+#[P: Change user's password
+#For Example
+#[A user <-- This will make a user named "user" an administrator
+#[S user <-- This will make a user named "user" a standard user
+#[D user1 <-- This will delete a user named "user1"
+#[P user password <-- This will change the password of a user named "user" to "password"
