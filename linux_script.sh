@@ -1,6 +1,6 @@
 #!/bin/bash
 # A script to perform all of the basic tasks
-
+terminal = `tty`
 # Back up important files
 mkdir -p ~/Backups/log
 cp /etc/group ~/Backups
@@ -27,7 +27,28 @@ apt-get dist-upgrade -qq
 
 
 # User Management
-
+exec < users.txt
+while read line
+do 
+	if [ `echo line | cut -c1-2` == "[A" ]
+	then
+		echo `echo line | cut -d" " -f 2` + "made administrator"
+	elif [ `echo line | cut -c1-2` == "[S" ]
+	then
+		echo `echo line | cut -d" " -f 2` + "made standard"
+	elif [ `echo line | cut -c1-2` == "[D" ]
+	then
+		echo `echo line | cut -d" " -f 2` + "deleted"
+	elif [ `echo line | cut -c1-2` == "[P" ]
+	then
+		echo "Enter new password"
+		exec < $terminal
+		read newpass
+		
+		echo `echo line | cut -d" " -f 2` + "'s password changed to: " $newpass
+		exec < users.txt
+	fi
+done
 
 
 # Remove Media Files
