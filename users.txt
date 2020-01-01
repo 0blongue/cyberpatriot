@@ -3,3 +3,7 @@
 #S: Make user Standard User
 #D: Delete user
 #P: Change user's password
+[A user
+[S user
+[D user1
+[P user password

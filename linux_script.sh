@@ -30,24 +30,26 @@ apt-get dist-upgrade -qq
 exec < users.txt
 while read line
 do 
-	if [ `echo line | cut -c1-2` == "[A" ]
-	then
-		echo `echo line | cut -d" " -f 2` + "made administrator"
-	elif [ `echo line | cut -c1-2` == "[S" ]
-	then
-		echo `echo line | cut -d" " -f 2` + "made standard"
-	elif [ `echo line | cut -c1-2` == "[D" ]
-	then
-		echo `echo line | cut -d" " -f 2` + "deleted"
-	elif [ `echo line | cut -c1-2` == "[P" ]
-	then
-		echo "Enter new password"
-		exec < $terminal
-		read newpass
-		
-		echo `echo line | cut -d" " -f 2` + "'s password changed to: " $newpass
-		exec < users.txt
-	fi
+    username=`echo $line | cut -d" " -f 2`
+    task=`echo $line | cut -c1-2`
+    if [ $task == "[A" ]
+    then
+	gpasswd -a $username sudo
+	echo $username made administrator
+    elif [ $task == "[S" ]
+    then
+	gpasswd -d $username sudo
+	echo $username made standard
+    elif [ $task == "[D" ]
+    then
+	userdel $username
+	echo $username deleted
+    elif [ $task == "[P" ]
+    then
+	newpass=`echo $line | cut -d" " -f 3`
+	echo -e "$newpass\n$newpass" | passwd $username	
+	echo $username"'s password changed to: "$newpass
+    fi
 done
 
 
