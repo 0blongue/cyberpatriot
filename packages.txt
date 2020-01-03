@@ -1,3 +1,8 @@
+#This file lists any packages that should be removed
+#There can be no blank lines and any lines beginning with the '#' character
+#such as these will be ignored.
+#To add a package to be removed, simply add it to this file.
+#Conversely, to save any package from being deleted, remove it from this file.
 #netcat and backdoors
 netcat
 netcat-openbsd
@@ -8,7 +13,6 @@ socat
 sock
 socket
 sbd
-
 #hacking tools
 john
 john-data
@@ -26,35 +30,28 @@ sipcrack
 irpas
 nmap
 zenmap
-
 #games
-
 #check to see if any of the following are required
 #samba
 samba
 samba-common
 samba-common-bin
 samba4
-
 #ftp
 vsftpd
-
 #telnet
 telnet
 telnetd
 inetutils-telnetd
 telnetd-ssl
-
 #sql
 mysql
 mysql-client-core-5.5
 mysql-server
 mysql-server-5.5
 mysql-client-5.5
-
 #http
 apache2
 nginx
-
 #dns
 bind9
