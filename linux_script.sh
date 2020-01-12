@@ -137,7 +137,7 @@ find /home -name "*.svgz" -type f -delete
 clear
 
 
-# Remove Backdoors and Hacking Tools
+# Remove Unwanted Packages
 exec<packages.txt
 while read line
 do
@@ -148,6 +148,13 @@ do
     fi
 done
 exec<terminal
+
+
+# Networking
+ufw enable
+echo "net.ipv6.conf.all.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.conf
+echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward
+echo "nospoof on" | sudo tee -a /etc/host.conf
 
 
 # Clean Up
